@@ -1,0 +1,28 @@
+project: "scp-bd"
+AWS_REGION: "us-east-1"
+SERVERLESS_DEFAULT_STAGE: "staging"
+RUNTIME: "nodejs14.x"
+ACCOUNTID: 279563707912
+env:
+  SERVERLESS_PROJECT: ${file(./serverless.vars.yml):project}
+  SERVERLESS_STAGE: ${opt:stage, file(./serverless.vars.yml):SERVERLESS_DEFAULT_STAGE}
+  SERVERLESS_REGION: ${opt:region, file(./serverless.vars.yml):AWS_REGION}
+api_authorizer:
+  type: AWS_IAM
+  credentials: arn:aws:iam::*:client/*
+STAGE_VARS:
+  staging:
+    FUNC_PREFIX: staging
+    DDB_SUFFIX: staging
+    SNS_PREFIX: staging
+    SQS_PREFIX: staging
+  dev:
+    FUNC_PREFIX: staging
+    DDB_SUFFIX: staging
+    SNS_PREFIX: staging
+    SQS_PREFIX: staging
+STAGE_ROLES:
+  staging:
+    lambda_role: arn:aws:iam::279563707912:role/development
+  dev:
+    lambda_role: arn:aws:iam::279563707912:role/development

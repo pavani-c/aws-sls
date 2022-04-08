@@ -1,0 +1,10 @@
+{
+  "name": "apig-caller-credentials",
+  "version": "0.0.1",
+  "description": "Add Invoke With Caller Credentials to APIG endpoints with authorization type AWS_IAM",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

@@ -1,0 +1,5 @@
+.idea
+.serverless
+node_modules
+.serverless_plugins/apig-caller-credentials/node_modules
+.serverless_plugins/serverless-artifacts/node_modules

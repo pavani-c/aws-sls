@@ -1,0 +1,12 @@
+parseCsvFile:
+  name: ${self:provider.stageVars.FUNC_PREFIX}-parse-csv-file'
+  handler: functions/auxiliary/parse-csv-file/handler.handler
+  environment: ${self:provider.stageVars}
+  memorySize: 3008
+  timeout: 900
+  #role: "arn:aws:iam::665773271055:role/send-verification-email"
+  description: This is to parse csv file
+  events:
+    - s3:
+      bucket: ee-fileeeee
+      event: s3:ObjectCreated:*

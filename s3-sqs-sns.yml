@@ -1,0 +1,39 @@
+#custom: ${file(./serverless.vars.yml)}
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: ee-fileeeee
+  JobsQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${self:provider.stageVars.SQS_PREFIX}-EEJobsQueue
+  DLQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ${self:provider.stageVars.SQS_PREFIX}-DeadLetterQueue
+  DLQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues:
+        - Ref: DLQueue
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: "allow-sns-messages"
+            Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: "sqs:SendMessage"
+            Resource: arn:aws:sqs:us-east-1:${self:custom.ACCOUNTID}:${self:provider.stageVars.SQS_PREFIX}-DeadLetterQueue
+            Condition:
+              ArnEquals:
+                aws:SourceArn: arn:aws:sns:us-east-1:${self:custom.ACCOUNTID}:${self:provider.stageVars.SNS_PREFIX}-DLQTopic
+  DLQTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: ${self:provider.stageVars.SNS_PREFIX}-DLQTopic
+      Subscription:
+        - Protocol: sqs
+          Endpoint: arn:aws:sqs:us-east-1:${self:custom.ACCOUNTID}:${self:provider.stageVars.SQS_PREFIX}-DeadLetterQueue.Arn

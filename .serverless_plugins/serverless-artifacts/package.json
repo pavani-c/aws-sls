@@ -1,0 +1,12 @@
+{
+  "name": "serverless-artifacts",
+  "version": "0.0.1",
+  "description": "Dependencies for a Serverless Module written in Node.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "dependency-tree": "^5.11.1",
+    "fs-extra": "^4.0.0",
+    "glob": "^7.1.2"
+  }
+}

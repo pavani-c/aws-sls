@@ -1,0 +1,32 @@
+#custom: ${file(./serverless.vars.yml)}
+Resources:
+  FileMeta:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: FileMeta-${self:provider.stageVars.DDB_SUFFIX}
+      AttributeDefinitions:
+        - AttributeName: fileId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: fileId
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+  EmployeeTaxInfo:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: EmployeeTaxInfo-${self:provider.stageVars.DDB_SUFFIX}
+      AttributeDefinitions:
+        - AttributeName: fileId
+          AttributeType: S
+        - AttributeName: employeeId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: fileId
+          KeyType: HASH
+        - AttributeName: employeeId
+          KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1

@@ -1,0 +1,53 @@
+{
+  "name": "SCP-Backend",
+  "version": "1.0.0",
+  "description": "A Serverless Project For Tax Code Details",
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "aws-sdk": "*",
+    "eslint": "^4.12.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "lambda-tester": "^3.0.2",
+    "mocha": "^3.2.0",
+    "rfr": "^1.2.3",
+    "serverless-offline": "^3.33.0",
+    "serverless-plugin-tracing": "^2.0.0",
+    "sinon": "^2.1.0",
+    "stdio": "^0.2.7",
+    "unit.js": "^2.0.0"
+  },
+  "dependencies": {
+    "agora-access-token": "^2.0.4",
+    "child_process": "^1.0.2",
+    "csv-parser": "^2.3.3",
+    "dotenv": "^16.0.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.5",
+    "jwt-simple": "^0.5.6",
+    "m3u": "0.0.2",
+    "offline": "0.0.1",
+    "request": "^2.88.2",
+    "serverless": "^1.70.1",
+    "stream": "0.0.2",
+    "util": "^0.12.4",
+    "uuid": "^8.2.0"
+  },
+  "peerDependencies": {
+    "serverless": "^1.70.1"
+  },
+  "scripts": {
+    "test": "SERVERLESS_STAGE=testing mocha test/unit --timeout 35000",
+    "test-integration": "SERVERLESS_STAGE=testing mocha test/integration/config --timeout 5*60*1000",
+    "deploy": "AWS_CLIENT_TIMEOUT=300000 sls deploy"
+  }
+}
