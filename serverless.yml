@@ -35,7 +35,7 @@ functions:
   signed-read-url: ${file(./functions/apis/url/_sls-functions.yml):readUrl}
 
   #Auxiliary
-  parse-csv-file: ${file(./functions/auxiliary/parse-csv-file/_sls-functions.yml):parseCsvFile}
+  #  parse-csv-file: ${file(./functions/auxiliary/parse-csv-file/_sls-functions.yml):parseCsvFile}
   fetch-tax-code-info: ${file(./functions/auxiliary/fetch-tax-code-info/_sls-functions.yml):fetchTaxCodeInfo}
 
 resources:
