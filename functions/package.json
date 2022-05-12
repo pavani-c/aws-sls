@@ -37,7 +37,7 @@
     "m3u": "0.0.2",
     "offline": "0.0.1",
     "request": "^2.88.2",
-    "serverless": "^1.70.1",
+    "serverless": "^3.17.0",
     "stream": "0.0.2",
     "util": "^0.12.4",
     "uuid": "^8.2.0"

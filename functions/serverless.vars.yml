@@ -1,4 +1,4 @@
-project: "scp-bd"
+project: "tax-locator"
 AWS_REGION: "us-east-1"
 SERVERLESS_DEFAULT_STAGE: "staging"
 RUNTIME: "nodejs14.x"

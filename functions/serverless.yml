@@ -1,13 +1,13 @@
-service: scp-bds
+service: tax-locator
 custom: ${file(./serverless.vars.yml)}
 # before changing version make sure serverless-artifacts plugin supports it
-frameworkVersion: "=1.83.3"
+#frameworkVersion: "=1.83.3"
 
 plugins:
   - apig-caller-credentials
   - serverless-artifacts
-  - serverless-offline
-  - serverless-plugin-tracing
+ # - serverless-offline
+ # - serverless-plugin-tracing
 package:
   individually: true
   # exclude everything, serverless-artifacts plugin will add required includes
@@ -28,6 +28,13 @@ provider:
   role: ${self:provider.stageRoles.lambda_role}
   versionFunctions: false
   tracing: true # enable tracing
+  endpointType: private
+  apigtaeway: 
+   resourcePolicy: 
+    - Effect: Allow
+      Principal: '*'
+      Action: 'execute-api:Invoke'
+      Resource: '*'
 
 functions:
   #Apis
@@ -35,7 +42,7 @@ functions:
   signed-read-url: ${file(./functions/apis/url/_sls-functions.yml):readUrl}
 
   #Auxiliary
-  #  parse-csv-file: ${file(./functions/auxiliary/parse-csv-file/_sls-functions.yml):parseCsvFile}
+  parse-csv-file: ${file(./functions/auxiliary/parse-csv-file/_sls-functions.yml):parseCsvFile}
   fetch-tax-code-info: ${file(./functions/auxiliary/fetch-tax-code-info/_sls-functions.yml):fetchTaxCodeInfo}
 
 resources:

@@ -1,0 +1,14 @@
+service: lambda-layer
+
+provider:
+  region: us-east-1
+  name: aws
+  runtime: nodejs14.x
+  stage: stage
+
+layers:
+  LambdaLayer:
+    path: nodejs
+    description: "lambda dependencies"
+  
+   
