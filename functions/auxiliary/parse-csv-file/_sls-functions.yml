@@ -8,5 +8,5 @@ parseCsvFile:
   description: This is to parse csv file
   events:
     - s3:
-      bucket: ee-fileeeee
+      bucket: ee-taxcode-files
       event: s3:ObjectCreated:*

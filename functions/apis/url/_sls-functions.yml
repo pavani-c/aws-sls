@@ -1,20 +1,24 @@
 uploadUrl:
   name: ${self:provider.stageVars.FUNC_PREFIX}-upload-url
   handler: functions/apis/url/s3.uploadUrl
+  layers:
+     - arn:aws:lambda:us-east-1:xxxxxxxxxx:layer/LambdaLayer:1
   environment: ${self:provider.stageVars}
   #role: "arn:aws:iam::xxxxxxxxxx:role/gamma-lambda"
   memorySize: 300
   events:
     - http:
-        path: clientapi/url/upload
+        path: taxcode/file/upload
         method: get
 readUrl:
   name: ${self:provider.stageVars.FUNC_PREFIX}-get-url
   handler: functions/apis/url/s3.getUrl
+  layers:
+     - arn:aws:lambda:us-east-1:xxxxxxxxxx:layer/LambdaLayer:1
   environment: ${self:provider.stageVars}
   #role: "arn:aws:iam::xxxxxxxxxx:role/gamma-lambda"
   memorySize: 300
   events:
     - http:
-        path: clientapi/url/read
+        path: taxcode/file/download
         method: get
